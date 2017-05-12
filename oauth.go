@@ -142,7 +142,7 @@ type ServiceProvider struct {
 	// Allow parameters to be passed in the query string rather
 	// than the body.
 	// See https://github.com/mrjones/oauth/pull/63
-	SignQueryParams   bool
+	SignQueryParams bool
 }
 
 func (sp *ServiceProvider) httpMethod() string {
@@ -654,10 +654,12 @@ func (c *Consumer) makeAuthorizedRequestReader(method string, urlString string, 
 		return nil, err
 	}
 
+	h := http.Header{}
+	h.Add("Accept", "application/json")
 	request := &http.Request{
 		Method:        method,
 		URL:           urlObject,
-		Header:        http.Header{},
+		Header:        h,
 		Body:          body,
 		ContentLength: int64(contentLength),
 	}
