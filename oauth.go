@@ -656,6 +656,7 @@ func (c *Consumer) makeAuthorizedRequestReader(method string, urlString string, 
 
 	h := http.Header{}
 	h.Add("Accept", "application/json")
+	h.Set("User-Agent", "Hey Presto")
 	request := &http.Request{
 		Method:        method,
 		URL:           urlObject,
